@@ -3098,53 +3098,32 @@ this.reset();
         // Ocultar el original
         document.getElementById('v2-content').style.display = 'none';
         
-        // TOGGLE - Un solo boton para todo
-        var enModoClaro = false;
+        // TOGGLE - Usar URL parameter para evitar conflictos de CSS
+        // ?v=v2 = V2 (light), sin param = V1 (dark)
         
-        function loadV2CSS() {
-            if (!document.getElementById('v2-dynamic-css')) {
-                var link = document.createElement('link');
-                link.id = 'v2-dynamic-css';
-                link.rel = 'stylesheet';
-                link.href = 'assets-v2/css/styles.css';
-                document.head.appendChild(link);
-            }
-        }
+        // Detectar versión actual desde URL
+        var urlParams = new URLSearchParams(window.location.search);
+        var verV2 = urlParams.get('v') === 'v2';
         
-        function removeV2CSS() {
-            var link = document.getElementById('v2-dynamic-css');
-            if (link) {
-                link.remove();
-            }
+        // Inicializar según URL
+        if (verV2) {
+            document.getElementById('v1').style.display = 'none';
+            document.getElementById('v2-host').style.display = 'block';
+            var btn = document.getElementById('toggle-btn');
+            btn.innerText = '☀️';
+            btn.style.background = '#fff';
+            btn.style.borderColor = '#22c55e';
+            btn.style.color = '#22c55e';
         }
         
         function togglePortfolio() {
-            var v1 = document.getElementById('v1');
-            var v2 = document.getElementById('v2-host');
-            var btn = document.getElementById('toggle-btn');
-            
-            if (!enModoClaro) {
-                // Cambiar a V2 + Modo Claro
-                loadV2CSS();
-                v1.style.display = 'none';
-                v2.style.display = 'block';
-                btn.innerText = '☀️';
-                btn.style.background = '#fff';
-                btn.style.borderColor = '#22c55e';
-                btn.style.color = '#22c55e';
-                enModoClaro = true;
+            // Simple: navegar a la otra versión
+            if (verV2) {
+                // Ir a V1
+                window.location.href = window.location.pathname;
             } else {
-                // Cambiar a V1 + Modo Oscuro
-                removeV2CSS();
-                v1.style.display = 'block';
-                v1.style.background = '#000000';
-                v2.style.display = 'none';
-                btn.innerText = '🌙';
-                btn.style.background = '#111';
-                btn.style.borderColor = '#22c55e';
-                btn.style.color = '#22c55e';
-                btn.style.boxShadow = '0 0 15px rgba(34,197,94,0.3)';
-                enModoClaro = false;
+                // Ir a V2
+                window.location.href = window.location.pathname + '?v=v2';
             }
         }
     </script>
