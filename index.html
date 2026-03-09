@@ -4,9 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ignacio Palmeri - Portfolio</title>
-  <meta http-equiv="refresh" content="0;url=v1.html">
+  <!-- Redirect INSTANTÁNEO a V1 -->
+  <script>
+    window.location.replace('/v1.html');
+  </script>
+  <!-- Fallback -->
+  <noscript>
+    <meta http-equiv="refresh" content="0; url=/v1.html">
+  </noscript>
 </head>
-<body>
-  <p>Redirigiendo a <a href="v1.html">v1.html</a>...</p>
+<body style="background:#000;color:#22c55e;font-family:monospace;text-align:center;padding:50px;">
+  <p>→ <a href="/v1.html" style="color:#22c55e;">Redirecting to portfolio...</a></p>
 </body>
 </html>
