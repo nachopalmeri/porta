@@ -46,14 +46,16 @@ El sistema de toggle es **instantáneo** (< 100ms):
 - Persiste la elección en localStorage
 - No requiere recarga de página
 
-## 📱 Proyectos
+## 📱 Proyectos Incluidos
 
-Los enlaces a proyectos deben verificarse periódicamente:
-- Bot Polymarket → GitHub
-- Fútbol Tracker → Vercel
-- Dashboard Franquiciados → https://franqui-ya.vercel.app/
-- PISKU CLI → Railway
-- Job Bot → Vercel
+| Proyecto | URL | Estado |
+|----------|-----|--------|
+| Pisculichi Labs (Polymarket) | https://polytools-omega.vercel.app/ | ✅ |
+| Franqui-YA Dashboard | https://franqui-ya.vercel.app/ | ✅ |
+| PISKU CLI | https://pisku-production.up.railway.app/ | ✅ |
+| Job Bot | https://job--bot.vercel.app/ | ✅ |
+| Fútbol Tracker | https://fulbotracker.vercel.app/ | ✅ |
+| Comida de Barrio | https://comidadebarrio.vercel.app/ | ✅ |
 
 ## 🔧 Deploy
 
