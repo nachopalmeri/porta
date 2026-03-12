@@ -2,6 +2,8 @@
 <html lang="es"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<!-- Config - API Keys -->
+<script src="config.js"></script>
 <!-- CSS to hide/show V1 and V2 immediately -->
 <script>
 (function() {
@@ -246,10 +248,20 @@
             font-weight: 500;
         }
         
-        .terminal-input::placeholder {
-            color: #666666;
-            opacity: 0.7;
-        }
+.terminal-input::placeholder {
+    color: #666;
+}
+
+/* Typing indicator */
+.typing-indicator {
+    color: #22c55e;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
         
         /* Floating particles like Juan Fernandez */
         .particles {
@@ -1840,7 +1852,7 @@ body.appendChild(cmdDiv);
 let response = '';
 switch(command) {
 case 'help':
-response = '╔══════════════════════════════╗\n║     COMANDOS DISPONIBLES      ║\n╠══════════════════════════════╣\n║ about     - Sobre mí          ║\n║ projects - Mis proyectos      ║\n║ skills    - Tecnologías       ║\n║ certs      - Certificaciones  ║\n║ exp        - Experiencia      ║\n║ edu        - Educación        ║\n║ contact  - Contacto          ║\n║ github    - Abrir GitHub      ║\n║ linkedin - Abrir LinkedIn    ║\n║ date       - Fecha actual     ║\n║ whoami   - Usuario           ║\n║ ls           - Listar archivos ║\n║ secret    - Easter egg        ║\n║ clear      - Limpiar terminal ║\n╚══════════════════════════════╝';
+response = '╔══════════════════════════════════╗\n║     COMANDOS DISPONIBLES          ║\n╠══════════════════════════════════╣\n║ about     - Sobre mí            ║\n║ projects  - Mis proyectos        ║\n║ skills    - Tecnologías         ║\n║ certs     - Certificaciones     ║\n║ exp       - Experiencia         ║\n║ edu       - Educación           ║\n║ contact   - Contacto            ║\n║ github    - Abrir GitHub        ║\n║ linkedin  - Abrir LinkedIn      ║\n║ date      - Fecha actual        ║\n║ whoami    - Usuario             ║\n║ ls        - Listar archivos     ║\n║ secret    - Easter egg          ║\n║ ai        - Chatear con IA      ║\n║ clear     - Limpiar terminal    ║\n╚══════════════════════════════════╝\n\n💡 Tip: Usá "ai tu pregunta" para\n   chatear con inteligencia artificial';
 break;
 case 'about':
 response = '┌────────────────────────────────────┐\n│  Ignacio Palmeri                   │\n│  ─────────────────                 │\n│  Estudiante de Gestión IT (UADE)   │\n│  Progreso: 25%                     │\n│                                    │\n│  🐧 Red Hat Certified              │\n│  🤖 Claude Code Graduate           │\n└────────────────────────────────────┘';
@@ -1926,8 +1938,30 @@ case 'hello':
 case 'hola':
 response = '¡Hola! 👋 Bienvenido a mi portfolio.\nEscribe "help" para ver los comandos disponibles.';
 break;
+case 'ai':
+case 'ask':
+case 'chat':
+// Get the question after the command
+const question = command.replace(/^(ai|ask|chat)\s*/i, '').trim();
+if (!question) {
+response = '用法: ai <tu pregunta>\n\nEjemplo: ai ¿Qué proyectos tiene Ignacio?';
+} else {
+response = '🤖 Consultando a IA...';
+// Show loading first
+const respDiv = document.createElement('div');
+respDiv.className = 'terminal-output';
+respDiv.textContent = response;
+body.appendChild(respDiv);
+body.scrollTop = body.scrollHeight;
+
+// Call Groq API
+callGroqAPI(question, body);
+return; // Return early to avoid adding response twice
+}
+break;
 default:
-response = 'Comando no encontrado: "' + command + '"\n\nEscribe "help" para ver comandos disponibles.';
+// Try Groq API for unknown commands
+response = 'Comando no reconocido: "' + command + '"\n\nTip: Podés usar "ai <pregunta>" para chatear con IA\nEscribe "help" para ver comandos disponibles.';
 }
 
 const respDiv = document.createElement('div');
@@ -1939,6 +1973,78 @@ body.scrollTop = body.scrollHeight;
 }
 
 // GitHub Contributions - Grid simple con datos mock
+function callGroqAPI(question, body) {
+const GROQ_API_KEY = window.GROQ_API_KEY || '';
+
+if (!GROQ_API_KEY) {
+const respDiv = document.createElement('div');
+respDiv.className = 'terminal-output';
+respDiv.textContent = '⚠️ API key no configurada.\nConfigurá GROQ_API_KEY en Vercel Dashboard.';
+body.appendChild(respDiv);
+body.scrollTop = body.scrollHeight;
+return;
+}
+
+const systemPrompt = `Vos sos el asistente de Ignacio Palmeri. Ignacio es un estudiante de Gestión de Tecnología de la Información (UADE) en Argentina, buscando su primera oportunidad como Trainee/Junior en desarrollo.
+
+Información sobre Ignacio:
+- Nombre: Ignacio Palmeri
+- Ubicación: Buenos Aires, Argentina
+- Universidad: UADE - Lic. en Gestión de TI (25% completado, 10/40 materias)
+- Stack: Python, JavaScript, Next.js, TypeScript, SQL, Java, Solidity, Linux, Git
+- Trabajo actual: Grido (Atención y gestión) desde 2023
+- Experiencia previa: Editor Multimedia & Content Manager Freelance (2021-2023)
+- Certificaciones: Red Hat System Administrator, Claude Code in Action
+- Proyectos: Bot Polymarket, FulboTracker Pro, PISKU CLI, Job Bot, DApp Blockchain, Fútbol Tracker, Comida de Barrio
+- Email: ignaciopalmeri1@gmail.com
+- WhatsApp: +54 11 5509 0832
+- GitHub: github.com/nachopalmeri
+- LinkedIn: linkedin.com/in/ignacio-palmeri-64035b378/
+
+Respondé de manera útil, amigable y concisa. Si no sabés algo, decilo con honestidad.`;
+
+// Show thinking indicator
+const thinkingDiv = document.createElement('div');
+thinkingDiv.className = 'terminal-output';
+thinkingDiv.innerHTML = '<span class="typing-indicator">🤖 Pensando</span>';
+body.appendChild(thinkingDiv);
+
+fetch('https://api.groq.com/openai/v1/chat/completions', {
+method: 'POST',
+headers: {
+'Authorization': 'Bearer ' + GROQ_API_KEY,
+'Content-Type': 'application/json'
+},
+body: JSON.stringify({
+model: 'llama-3.1-8b-instant',
+messages: [
+{role: 'system', content: systemPrompt},
+{role: 'user', content: question}
+],
+temperature: 0.7,
+max_tokens: 500
+})
+})
+.then(response => response.json())
+.then(data => {
+body.removeChild(thinkingDiv);
+const aiResponse = data.choices?.[0]?.message?.content || 'No pude obtener una respuesta. Intentá de nuevo.';
+const respDiv = document.createElement('div');
+respDiv.className = 'terminal-output';
+respDiv.textContent = aiResponse;
+body.appendChild(respDiv);
+body.scrollTop = body.scrollHeight;
+})
+.catch(error => {
+body.removeChild(thinkingDiv);
+const respDiv = document.createElement('div');
+respDiv.className = 'terminal-output';
+respDiv.textContent = '❌ Error: ' + error.message;
+body.appendChild(respDiv);
+body.scrollTop = body.scrollHeight;
+});
+}
+
 function loadContributions() {
     var grid = document.getElementById('contributions-grid');
     
