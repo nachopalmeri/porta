@@ -1206,24 +1206,44 @@
     <!-- Theme Toggle Button - ELIMINADO, ahora usamos el toggle unificado -->
     
     <!-- Terminal Easter Egg -->
-    <div class="terminal-easter-egg">
-        <button class="terminal-toggle" onclick="toggleTerminal()" aria-label="Abrir terminal">>_</button>
-        <div class="terminal-popup" id="terminal-popup">
+    <div class="terminal-easter-egg" style="display: flex; flex-direction: column; align-items: flex-end;">
+        <button class="terminal-toggle" id="terminalBtn" aria-label="Abrir terminal" style="cursor: pointer; pointer-events: auto;">>_</button>
+        <div class="terminal-popup" id="terminal-popup" style="display: none;">
             <div class="terminal-header">
                 <span style="width:8px;height:8px;border-radius:50%;background:#ef4444;"></span>
                 <span style="width:8px;height:8px;border-radius:50%;background:#f59e0b;"></span>
                 <span style="width:8px;height:8px;border-radius:50%;background:#22c55e;"></span>
-                <span style="margin-left:8px;font-size:10px;color:var(--text-secondary);">guest@ignacio:~</span>
+                <span style="margin-left:8px;font-size:10px;color:#888;">guest@ignacio:~</span>
             </div>
             <div class="terminal-body" id="terminal-body">
                 <div class="terminal-output">Bienvenido! Escribe 'help' para ver comandos.</div>
             </div>
-            <div class="terminal-input-line" style="padding:8px 12px;border-top:1px solid var(--border-color);">
+            <div class="terminal-input-line" style="padding:8px 12px;border-top:1px solid #1a1a1a;">
                 <span class="terminal-prompt">$</span>
-                <input type="text" class="terminal-input" id="terminal-input" placeholder="Escribe 'help'..." onkeypress="handleTerminalInput(event)">
+                <input type="text" class="terminal-input" id="terminal-input" placeholder="Escribe 'help'..." style="flex: 1; background: transparent; border: none; color: #22c55e; font-family: monospace; font-size: 12px; outline: none;">
             </div>
         </div>
     </div>
+    
+    <script>
+    // Terminal toggle with debug
+    document.addEventListener('DOMContentLoaded', function() {
+        var btn = document.getElementById('terminalBtn');
+        var popup = document.getElementById('terminal-popup');
+        
+        if (btn && popup) {
+            btn.onclick = function() {
+                console.log('Button clicked!');
+                if (popup.style.display === 'none') {
+                    popup.style.display = 'flex';
+                    popup.style.flexDirection = 'column';
+                } else {
+                    popup.style.display = 'none';
+                }
+            };
+        }
+    });
+    </script>
     
     <!-- Navigation Bar -->
     <nav class="fixed top-0 left-0 right-0 z-50 glass-nav rounded-b-2xl">
