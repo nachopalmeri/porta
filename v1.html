@@ -1856,7 +1856,25 @@ document.getElementById('mobile-menu').classList.toggle('hidden');
 }
 
 // Terminal Easter Egg
+document.addEventListener('DOMContentLoaded', function() {
+    const terminalBtn = document.querySelector('.terminal-toggle');
+    const terminalPopup = document.getElementById('terminal-popup');
+    
+    if (terminalBtn) {
+        terminalBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('Terminal button clicked!');
+            terminalPopup.classList.toggle('active');
+            if (terminalPopup.classList.contains('active')) {
+                const input = document.getElementById('terminal-input');
+                if (input) input.focus();
+            }
+        });
+    }
+});
+
 function toggleTerminal() {
+console.log('toggleTerminal called!');
 const popup = document.getElementById('terminal-popup');
 popup.classList.toggle('active');
 if (popup.classList.contains('active')) {
