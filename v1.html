@@ -1230,6 +1230,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         var btn = document.getElementById('terminalBtn');
         var popup = document.getElementById('terminal-popup');
+        var terminalInput = document.getElementById('terminal-input');
         
         if (btn && popup) {
             btn.onclick = function() {
@@ -1241,6 +1242,16 @@
                     popup.style.display = 'none';
                 }
             };
+        }
+        
+        // Handle Enter key in terminal input
+        if (terminalInput) {
+            terminalInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    handleTerminalInput(e);
+                }
+            });
         }
     });
     </script>
