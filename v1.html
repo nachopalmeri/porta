@@ -369,45 +369,69 @@
             transition: transform 0.4s ease;
         }
         
-        .bento-card:hover::before {
-            transform: scaleX(1);
+        .bento-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+            perspective: 1000px;
         }
         
         .bento-card:hover {
             border-color: #22c55e;
             background-color: #0d0d0d;
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5), 0 0 40px rgba(34,197,94,0.25);
+            transform: translateY(-12px) scale(1.03) rotateX(2deg);
+            box-shadow: 0 30px 60px -12px rgba(0,0,0,0.6), 0 0 50px rgba(34,197,94,0.3);
+        }
+        
+        .bento-card:hover::before {
+            transform: scaleX(1) scaleY(1);
+            opacity: 1;
+        }
+        
+        .bento-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 2px;
+            background: linear-gradient(135deg, #22c55e, transparent, #22c55e);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: all 0.4s ease;
         }
         
         .bento-card:hover .card-title {
             color: #22c55e;
-            transition: color 0.3s ease;
+            transform: translateX(5px);
+            transition: all 0.3s ease;
         }
         
         .bento-card.featured:hover {
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5), 0 0 60px rgba(34,197,94,0.3);
+            box-shadow: 0 35px 70px -12px rgba(0,0,0,0.6), 0 0 70px rgba(34,197,94,0.4);
         }
         
         /* Card entrance animation */
         @keyframes cardEntrance {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(30px) scale(0.95);
             }
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(0) scale(1);
             }
         }
         
         .bento-card {
-            animation: cardEntrance 0.5s ease forwards;
+            animation: cardEntrance 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
         }
         
         .delay-1 { animation-delay: 0.1s; opacity: 0; }
         .delay-2 { animation-delay: 0.2s; opacity: 0; }
         .delay-3 { animation-delay: 0.3s; opacity: 0; }
+        .delay-4 { animation-delay: 0.4s; opacity: 0; }
+        .delay-5 { animation-delay: 0.5s; opacity: 0; }
         
         [data-theme="light"] .bento-card:hover {
             border-color: #d4d4d4;
@@ -1175,7 +1199,14 @@
 <body class="min-h-screen p-4 md:p-8 lg:p-12 antialiased selection-bg-white selection-text-black">
 
 <!-- V2 Link -->
-<a href="v2.html" class="v1-toggle" style="position:fixed;top:20px;right:20px;z-index:99999;padding:12px 16px;background:#111;border:2px solid #22c55e;border-radius:50%;color:#22c55e;text-decoration:none;cursor:pointer;font-size:20px;box-shadow:0 0 15px rgba(34,197,94,0.3);transition:all 0.3s;">🌙</a>
+<a href="v2.html" class="v1-toggle" onclick="switchVersion('v2'); return false;" style="position:fixed;top:20px;right:20px;z-index:99999;padding:12px 16px;background:#111;border:2px solid #22c55e;border-radius:50%;color:#22c55e;text-decoration:none;cursor:pointer;font-size:20px;box-shadow:0 0 15px rgba(34,197,94,0.3);transition:all 0.3s;">🌙</a>
+
+<script>
+function switchVersion(version) {
+    localStorage.setItem('preferredVersion', version);
+    window.location.href = version + '.html';
+}
+</script>
 
 <!-- V1 WRAPPER -->
 <div id="v1" style="background: #000000;">
@@ -1347,20 +1378,18 @@ Programación y análisis de datos, con enfoque en el sector Fintech y Criptoact
 </header>
 
 <!-- Proyectos Section -->
-<section id="proyectos" class="mb-8 animate-slide-up delay-1">
-    <div class="flex items-center gap-3 mb-6">
-        <span class="material-symbols-outlined text-white text-2xl">folder</span>
-        <h2 class="text-2xl font-bold text-white uppercase tracking-wider">Proyectos</h2>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-min">
+    <section id="proyectos" class="mb-12 animate-slide-up delay-1">
+        <div class="flex items-center gap-3 mb-8">
+            <span class="material-symbols-outlined text-green-500 text-3xl">code</span>
+            <h2 class="text-3xl font-bold text-white uppercase tracking-wider">Proyectos Destacados</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-min">
 <a href="https://polytools-omega.vercel.app/" target="_blank" rel="noopener noreferrer" class="md:col-span-7 bento-card featured rounded-2xl p-0 flex flex-col justify-between group relative overflow-hidden h-[320px] cursor-pointer">
 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/80 z-10"></div>
 <img src="imgs/polymarktporyect.PNG" alt="Bot Polymarket" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" loading="lazy" width="400" height="300">
 <div class="relative z-20 flex justify-between items-start">
 <div class="flex items-center gap-2">
-<span class="terminal-dot red"></span>
-<span class="terminal-dot yellow"></span>
-<span class="terminal-dot green"></span>
+<span class="px-3 py-1 text-xs font-bold border border-green-500/50 rounded text-green-400 bg-green-500/10">⭐ DESTACADO</span>
 </div>
 <span class="material-symbols-outlined text-[#333] group-hover:text-white transition-colors">arrow_outward</span>
                 </div>
@@ -1410,9 +1439,7 @@ Programación y análisis de datos, con enfoque en el sector Fintech y Criptoact
 <img src="imgs/dom.PNG" alt="DApp Blockchain" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" loading="lazy" width="400" height="300">
 <div class="relative z-20 flex justify-between items-start p-6">
 <div class="flex items-center gap-2">
-<span class="terminal-dot red"></span>
-<span class="terminal-dot yellow"></span>
-<span class="terminal-dot green"></span>
+<span class="px-3 py-1 text-xs font-bold border border-green-500/50 rounded text-green-400 bg-green-500/10">⭐ DESTACADO</span>
 </div>
 <span class="material-symbols-outlined text-white/70 group-hover:text-white transition-colors">arrow_outward</span>
 </div>
@@ -1434,9 +1461,7 @@ Programación y análisis de datos, con enfoque en el sector Fintech y Criptoact
 <img src="imgs/comidadebarrio.PNG" alt="Proyectos Web" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" loading="lazy" width="400" height="300">
 <div class="relative z-20 flex justify-between items-start p-6">
 <div class="flex items-center gap-2">
-<span class="terminal-dot red"></span>
-<span class="terminal-dot yellow"></span>
-<span class="terminal-dot green"></span>
+<span class="px-3 py-1 text-xs font-bold border border-green-500/50 rounded text-green-400 bg-green-500/10">⭐ DESTACADO</span>
 </div>
 <span class="material-symbols-outlined text-white/70 group-hover:text-white transition-colors">arrow_outward</span>
 </div>
@@ -1458,9 +1483,7 @@ Programación y análisis de datos, con enfoque en el sector Fintech y Criptoact
 <img src="imgs/dashboard-franquiciados.PNG" alt="Dashboard Franquiciados" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" loading="lazy" width="400" height="300">
 <div class="relative z-20 flex justify-between items-start p-6">
 <div class="flex items-center gap-2">
-<span class="terminal-dot red"></span>
-<span class="terminal-dot yellow"></span>
-<span class="terminal-dot green"></span>
+<span class="px-3 py-1 text-xs font-bold border border-green-500/50 rounded text-green-400 bg-green-500/10">⭐ DESTACADO</span>
 </div>
 <span class="material-symbols-outlined text-white/70 group-hover:text-white transition-colors">arrow_outward</span>
 </div>
@@ -1485,9 +1508,7 @@ Programación y análisis de datos, con enfoque en el sector Fintech y Criptoact
 <img src="imgs/job-bot.png" alt="PISKU CLI" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" loading="lazy" width="400" height="300">
 <div class="relative z-20 flex justify-between items-start p-6">
 <div class="flex items-center gap-2">
-<span class="terminal-dot red"></span>
-<span class="terminal-dot yellow"></span>
-<span class="terminal-dot green"></span>
+<span class="px-3 py-1 text-xs font-bold border border-green-500/50 rounded text-green-400 bg-green-500/10">⭐ DESTACADO</span>
 </div>
 <span class="px-2 py-1 text-[10px] font-mono font-bold border border-orange-500/50 rounded text-orange-400 bg-orange-500/10 animate-pulse">🔧 EN CONSTRUCCIÓN</span>
 </div>
@@ -1511,9 +1532,7 @@ Programación y análisis de datos, con enfoque en el sector Fintech y Criptoact
 <img src="imgs/pisku-cli.png" alt="Job Bot" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" loading="lazy" width="400" height="300">
 <div class="relative z-20 flex justify-between items-start p-6">
 <div class="flex items-center gap-2">
-<span class="terminal-dot red"></span>
-<span class="terminal-dot yellow"></span>
-<span class="terminal-dot green"></span>
+<span class="px-3 py-1 text-xs font-bold border border-green-500/50 rounded text-green-400 bg-green-500/10">⭐ DESTACADO</span>
 </div>
 <span class="px-2 py-1 text-[10px] font-mono font-bold border border-orange-500/50 rounded text-orange-400 bg-orange-500/10 animate-pulse">🔧 EN CONSTRUCCIÓN</span>
 </div>
@@ -1537,9 +1556,7 @@ Programación y análisis de datos, con enfoque en el sector Fintech y Criptoact
 <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-purple-500/10 z-[5]"></div>
 <div class="relative z-20 flex justify-between items-start p-6">
 <div class="flex items-center gap-2">
-<span class="terminal-dot red"></span>
-<span class="terminal-dot yellow"></span>
-<span class="terminal-dot green"></span>
+<span class="px-3 py-1 text-xs font-bold border border-green-500/50 rounded text-green-400 bg-green-500/10">⭐ DESTACADO</span>
 </div>
 <span class="px-2 py-1 text-[10px] font-mono font-bold border border-cyan-500/50 rounded text-cyan-400 bg-cyan-500/10">COMING SOON</span>
 </div>
@@ -1562,9 +1579,7 @@ Programación y análisis de datos, con enfoque en el sector Fintech y Criptoact
 <div class="absolute inset-0 bg-gradient-to-br from-green-500/10 via-transparent to-purple-500/10 z-[5]"></div>
 <div class="relative z-20 flex justify-between items-start p-6">
 <div class="flex items-center gap-2">
-<span class="terminal-dot red"></span>
-<span class="terminal-dot yellow"></span>
-<span class="terminal-dot green"></span>
+<span class="px-3 py-1 text-xs font-bold border border-green-500/50 rounded text-green-400 bg-green-500/10">⭐ DESTACADO</span>
 </div>
 <span class="px-2 py-1 text-[10px] font-mono font-bold border border-yellow-500/50 rounded text-yellow-400 bg-yellow-500/10">EN DESARROLLO</span>
 </div>
@@ -1585,9 +1600,7 @@ Programación y análisis de datos, con enfoque en el sector Fintech y Criptoact
 <div class="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-transparent to-purple-500/20 z-[5]"></div>
 <div class="relative z-20 flex justify-between items-start p-6">
 <div class="flex items-center gap-2">
-<span class="terminal-dot red"></span>
-<span class="terminal-dot yellow"></span>
-<span class="terminal-dot green"></span>
+<span class="px-3 py-1 text-xs font-bold border border-green-500/50 rounded text-green-400 bg-green-500/10">⭐ DESTACADO</span>
 </div>
 <span class="material-symbols-outlined text-white/30">hourglass_empty</span>
 </div>

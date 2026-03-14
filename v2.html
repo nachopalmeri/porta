@@ -56,9 +56,16 @@
 <body style="background: #FAFAF9; margin: 0; padding: 0; font-family: Inter, sans-serif;">
     
     <!-- V1 Link -->
-    <a href="v1.html" class="v2-toggle">
+    <a href="v1.html" class="v2-toggle" onclick="switchVersion('v1'); return false;">
         <span>← Versión Clásica</span>
     </a>
+    
+    <script>
+    function switchVersion(version) {
+        localStorage.setItem('preferredVersion', version);
+        window.location.href = version + '.html';
+    }
+    </script>
     
 <div id="v2-content" >
   <!-- V2 Theme Toggle - ELIMINADO, ahora usamos el toggle unificado -->
