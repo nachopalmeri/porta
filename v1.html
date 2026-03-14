@@ -125,6 +125,8 @@
             display: grid;
             grid-template-columns: repeat(15, 1fr);
             gap: 3px;
+            max-width: 100%;
+            overflow-x: auto;
         }
         
         .contribution-cell {
@@ -159,20 +161,28 @@
         }
         
         .terminal-toggle {
-            width: 44px;
-            height: 44px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            color: var(--accent-primary);
+            background: #22c55e;
+            border: 2px solid #22c55e;
+            color: #000;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: monospace;
-            font-size: 18px;
-            transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease, border-color 0.2s ease;
+            font-size: 20px;
+            font-weight: bold;
+            transition: all 0.3s ease;
             pointer-events: auto;
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4);
+        }
+        
+        .terminal-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(34, 197, 94, 0.6);
+            background: #16a34a;
         }
         
         .terminal-toggle:hover {
@@ -182,22 +192,24 @@
         
         .terminal-popup {
             position: absolute;
-            bottom: 55px;
+            bottom: 60px;
             right: 0;
-            width: 320px;
-            background: #ffffff;
-            border: 1px solid #e5e5e5;
+            width: 350px;
+            height: 300px;
+            background: #0a0a0a;
+            border: 2px solid #22c55e;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(34,197,94,0.2);
             display: none;
             transform: translateY(10px);
-            transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease, border-color 0.2s ease;
+            transition: all 0.3s ease;
             z-index: 10001;
         }
         
         .terminal-popup.active {
-            display: block;
+            display: flex;
+            flex-direction: column;
             transform: translateY(0);
         }
         
@@ -212,10 +224,12 @@
         
         .terminal-body {
             padding: 12px;
-            height: 200px;
+            height: 220px;
             overflow-y: auto;
-            font-family: monospace;
+            font-family: 'JetBrains Mono', monospace;
             font-size: 12px;
+            background: #000;
+            color: #22c55e;
         }
         
         .terminal-output {
@@ -360,15 +374,40 @@
         }
         
         .bento-card:hover {
-            border-color: #333;
+            border-color: #22c55e;
             background-color: #0d0d0d;
-            transform: translateY(-4px);
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5), 0 0 30px rgba(34,197,94,0.1);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5), 0 0 40px rgba(34,197,94,0.25);
+        }
+        
+        .bento-card:hover .card-title {
+            color: #22c55e;
+            transition: color 0.3s ease;
         }
         
         .bento-card.featured:hover {
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5), 0 0 40px rgba(34,197,94,0.15);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5), 0 0 60px rgba(34,197,94,0.3);
         }
+        
+        /* Card entrance animation */
+        @keyframes cardEntrance {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .bento-card {
+            animation: cardEntrance 0.5s ease forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.1s; opacity: 0; }
+        .delay-2 { animation-delay: 0.2s; opacity: 0; }
+        .delay-3 { animation-delay: 0.3s; opacity: 0; }
         
         [data-theme="light"] .bento-card:hover {
             border-color: #d4d4d4;
@@ -1412,7 +1451,7 @@ Programación y análisis de datos, con enfoque en el sector Fintech y Criptoact
 <div class="md:col-span-6">
 <a href="https://pisku-production.up.railway.app/" target="_blank" rel="noopener noreferrer" class="bento-card featured rounded-2xl p-0 flex flex-col justify-between group relative overflow-hidden h-[280px] cursor-pointer">
 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/80 z-10"></div>
-<img src="imgs/pisku-cli.png" alt="PISKU CLI" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" loading="lazy" width="400" height="300">
+<img src="imgs/job-bot.png" alt="PISKU CLI" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" loading="lazy" width="400" height="300">
 <div class="relative z-20 flex justify-between items-start p-6">
 <div class="flex items-center gap-2">
 <span class="terminal-dot red"></span>
@@ -1438,7 +1477,7 @@ Programación y análisis de datos, con enfoque en el sector Fintech y Criptoact
 <div class="md:col-span-6">
 <a href="https://job--bot.vercel.app/" target="_blank" rel="noopener noreferrer" class="bento-card featured rounded-2xl p-0 flex flex-col justify-between group relative overflow-hidden h-[280px] cursor-pointer">
 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/80 z-10"></div>
-<img src="imgs/job-bot.png" alt="Job Bot" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" loading="lazy" width="400" height="300">
+<img src="imgs/pisku-cli.png" alt="Job Bot" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" loading="lazy" width="400" height="300">
 <div class="relative z-20 flex justify-between items-start p-6">
 <div class="flex items-center gap-2">
 <span class="terminal-dot red"></span>
