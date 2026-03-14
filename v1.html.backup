@@ -1100,7 +1100,7 @@
             *::after {
                 animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
-                transition-duration: 150ms !important;
+                transition-duration: 0.01ms !important;
                 scroll-behavior: auto !important;
             }
             
@@ -1199,7 +1199,7 @@
                     <a href="#contacto" class="text-sm text-white bg-[#1F1F1F] px-4 py-2 rounded-full hover:bg-white hover:text-black transition-all duration-300">Contacto</a>
                 </div>
                 <!-- Mobile menu button -->
-                <button class="md:hidden text-white" onclick="toggleMobileMenu()" aria-label="Abrir menú de navegación">
+                <button class="md:hidden text-white" onclick="toggleMobileMenu()">
                     <span class="material-symbols-outlined">menu</span>
                 </button>
             </div>
@@ -1238,7 +1238,7 @@ DISPONIBLE PARA TRABAJAR
 </div>
 <div class="flex items-center gap-6">
 <div class="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-2 border-[#222] hover:border-green-500 transition-colors flex-shrink-0">
-<img src="imgs/yo.jfif" alt="Ignacio Palmeri" class="w-full h-full object-cover" width="400" height="400" loading="eager" fetchpriority="high">
+<img src="imgs/yo.jfif" alt="Ignacio Palmeri" class="w-full h-full object-cover" width="400" height="400">
 </div>
 <div>
 <h1 class="text-5xl md:text-7xl lg:text-8xl font-black display-font tracking-tighter bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent leading-none uppercase">
@@ -1256,16 +1256,16 @@ Programación y análisis de datos, con enfoque en el sector Fintech y Criptoact
 </div>
 <div class="flex flex-col md:items-end gap-4 mt-8 md:mt-0">
 <div class="flex items-center gap-3">
-<a class="h-10 w-10 flex items-center justify-center border border-[#1F1F1F] bg-[#090909] rounded hover:bg-white hover:text-black hover:border-white transition-all duration-300 group social-btn" href="https://github.com/nachopalmeri" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+<a class="h-10 w-10 flex items-center justify-center border border-[#1F1F1F] bg-[#090909] rounded hover:bg-white hover:text-black hover:border-white transition-all duration-300 group social-btn" href="https://github.com/nachopalmeri" target="_blank" aria-label="GitHub">
 <i class="fa-brands fa-github text-lg"></i>
 </a>
-<a class="h-10 w-10 flex items-center justify-center border border-[#1F1F1F] bg-[#090909] rounded hover:bg-[#0077b5] hover:text-white hover:border-[#0077b5] transition-all duration-300 group social-btn" href="https://www.linkedin.com/in/ignacio-palmeri-64035b378/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+<a class="h-10 w-10 flex items-center justify-center border border-[#1F1F1F] bg-[#090909] rounded hover:bg-[#0077b5] hover:text-white hover:border-[#0077b5] transition-all duration-300 group social-btn" href="https://www.linkedin.com/in/ignacio-palmeri-64035b378/" target="_blank" aria-label="LinkedIn">
 <i class="fa-brands fa-linkedin-in text-lg"></i>
 </a>
 <button class="h-10 w-10 flex items-center justify-center border border-[#1F1F1F] bg-[#090909] rounded hover:bg-white hover:text-black hover:border-white transition-all duration-300 group social-btn" onclick="copyEmail()" aria-label="Copiar email">
 <i class="fa-solid fa-envelope text-lg"></i>
 </button>
-<a class="h-10 px-4 flex items-center justify-center border border-[#1F1F1F] bg-[#090909] rounded hover:bg-green-500/20 hover:border-green-500 transition-all duration-300 text-xs font-mono" href="https://drive.google.com/file/d/174_MYjUcNGc3mgJE2vabqmo9W799_cKC/view" target="_blank" rel="noopener noreferrer" aria-label="CV">
+<a class="h-10 px-4 flex items-center justify-center border border-[#1F1F1F] bg-[#090909] rounded hover:bg-green-500/20 hover:border-green-500 transition-all duration-300 text-xs font-mono" href="https://drive.google.com/file/d/174_MYjUcNGc3mgJE2vabqmo9W799_cKC/view" target="_blank" aria-label="CV">
 <span>CV</span>
 </a>
 </div>
@@ -1283,7 +1283,7 @@ Programación y análisis de datos, con enfoque en el sector Fintech y Criptoact
         <h2 class="text-2xl font-bold text-white uppercase tracking-wider">Proyectos</h2>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-min">
-<a href="https://polytools-omega.vercel.app/" target="_blank" rel="noopener noreferrer" class="md:col-span-7 bento-card featured rounded-2xl p-0 flex flex-col justify-between group relative overflow-hidden h-[320px] cursor-pointer">
+<a href="https://polytools-omega.vercel.app/" target="_blank" class="md:col-span-7 bento-card featured rounded-2xl p-0 flex flex-col justify-between group relative overflow-hidden h-[320px] cursor-pointer">
 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/80 z-10"></div>
 <img src="imgs/polymarktporyect.PNG" alt="Bot Polymarket" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" loading="lazy" width="400" height="300">
 <div class="relative z-20 flex justify-between items-start">
@@ -1314,7 +1314,7 @@ Programación y análisis de datos, con enfoque en el sector Fintech y Criptoact
 <span class="text-[10px] text-[#444] hover:text-green-400 cursor-pointer transition-colors">→ Código</span>
 </div>
 </a>
-<a href="https://fulbotracker.vercel.app/" target="_blank" rel="noopener noreferrer" class="md:col-span-5 bento-card featured rounded-2xl p-0 flex flex-col justify-between group relative overflow-hidden h-[320px] cursor-pointer">
+<a href="https://fulbotracker.vercel.app/" target="_blank" class="md:col-span-5 bento-card featured rounded-2xl p-0 flex flex-col justify-between group relative overflow-hidden h-[320px] cursor-pointer">
 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/80 z-10"></div>
 <img src="imgs/futtracker.PNG" alt="Fútbol Tracker" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" loading="lazy" width="400" height="300">
 <div class="relative z-20 flex justify-between items-start">
@@ -1335,7 +1335,7 @@ Programación y análisis de datos, con enfoque en el sector Fintech y Criptoact
 </div>
 </a>
 <div class="md:col-span-6">
-<a href="https://prodesol.vercel.app/" target="_blank" rel="noopener noreferrer" class="bento-card featured rounded-2xl p-0 flex flex-col justify-between group relative overflow-hidden h-[240px] cursor-pointer">
+<a href="https://prodesol.vercel.app/" target="_blank" class="bento-card featured rounded-2xl p-0 flex flex-col justify-between group relative overflow-hidden h-[240px] cursor-pointer">
 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/80 z-10"></div>
 <img src="imgs/dom.PNG" alt="DApp Blockchain" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" loading="lazy" width="400" height="300">
 <div class="relative z-20 flex justify-between items-start p-6">
@@ -1359,7 +1359,7 @@ Programación y análisis de datos, con enfoque en el sector Fintech y Criptoact
 </a>
 </div>
 <div class="md:col-span-6">
-<a href="https://portafolioignaciopalmeri.vercel.app/hub.html" target="_blank" rel="noopener noreferrer" class="bento-card featured rounded-2xl p-0 flex flex-col justify-between group relative overflow-hidden h-[240px] cursor-pointer">
+<a href="https://portafolioignaciopalmeri.vercel.app/hub.html" target="_blank" class="bento-card featured rounded-2xl p-0 flex flex-col justify-between group relative overflow-hidden h-[240px] cursor-pointer">
 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/80 z-10"></div>
 <img src="imgs/comidadebarrio.PNG" alt="Proyectos Web" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" loading="lazy" width="400" height="300">
 <div class="relative z-20 flex justify-between items-start p-6">
@@ -1383,7 +1383,7 @@ Programación y análisis de datos, con enfoque en el sector Fintech y Criptoact
 </a>
 </div>
 <div class="md:col-span-12">
-<a href="https://franqui-ya-fpq4.vercel.app/" target="_blank" rel="noopener noreferrer" class="bento-card featured rounded-2xl p-0 flex flex-col justify-between group relative overflow-hidden h-[280px] cursor-pointer">
+<a href="https://franqui-ya-fpq4.vercel.app/" target="_blank" class="bento-card featured rounded-2xl p-0 flex flex-col justify-between group relative overflow-hidden h-[280px] cursor-pointer">
 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/80 z-10"></div>
 <img src="imgs/dashboard-franquiciados.PNG" alt="Dashboard Franquiciados" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" loading="lazy" width="400" height="300">
 <div class="relative z-20 flex justify-between items-start p-6">
@@ -1410,7 +1410,7 @@ Programación y análisis de datos, con enfoque en el sector Fintech y Criptoact
 
 <!-- PISKU CLI -->
 <div class="md:col-span-6">
-<a href="https://pisku-production.up.railway.app/" target="_blank" rel="noopener noreferrer" class="bento-card featured rounded-2xl p-0 flex flex-col justify-between group relative overflow-hidden h-[280px] cursor-pointer">
+<a href="https://pisku-production.up.railway.app/" target="_blank" class="bento-card featured rounded-2xl p-0 flex flex-col justify-between group relative overflow-hidden h-[280px] cursor-pointer">
 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/80 z-10"></div>
 <img src="imgs/job-bot.png" alt="PISKU CLI" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" loading="lazy" width="400" height="300">
 <div class="relative z-20 flex justify-between items-start p-6">
@@ -1436,7 +1436,7 @@ Programación y análisis de datos, con enfoque en el sector Fintech y Criptoact
 
 <!-- Job Bot -->
 <div class="md:col-span-6">
-<a href="https://job--bot.vercel.app/" target="_blank" rel="noopener noreferrer" class="bento-card featured rounded-2xl p-0 flex flex-col justify-between group relative overflow-hidden h-[280px] cursor-pointer">
+<a href="https://job--bot.vercel.app/" target="_blank" class="bento-card featured rounded-2xl p-0 flex flex-col justify-between group relative overflow-hidden h-[280px] cursor-pointer">
 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/80 z-10"></div>
 <img src="imgs/pisku-cli.png" alt="Job Bot" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" loading="lazy" width="400" height="300">
 <div class="relative z-20 flex justify-between items-start p-6">
@@ -1487,7 +1487,7 @@ Programación y análisis de datos, con enfoque en el sector Fintech y Criptoact
 </div>
 
 <div class="md:col-span-6">
-<a href="https://portafolio-v2-gamma.vercel.app/" target="_blank" rel="noopener noreferrer" class="bento-card featured rounded-2xl p-0 flex flex-col justify-between group relative overflow-hidden h-[240px] cursor-pointer glow-hover">
+<a href="https://portafolio-v2-gamma.vercel.app/" target="_blank" class="bento-card featured rounded-2xl p-0 flex flex-col justify-between group relative overflow-hidden h-[240px] cursor-pointer glow-hover">
 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/80 z-10"></div>
 <div class="absolute inset-0 bg-gradient-to-br from-green-500/10 via-transparent to-purple-500/10 z-[5]"></div>
 <div class="relative z-20 flex justify-between items-start p-6">
@@ -1549,12 +1549,12 @@ Programación y análisis de datos, con enfoque en el sector Fintech y Criptoact
 <span class="material-symbols-outlined text-green-400">commit</span>
 <h3 class="text-lg font-bold uppercase tracking-wider text-white">GitHub Activity</h3>
 </div>
-<a href="https://github.com/nachopalmeri" target="_blank" rel="noopener noreferrer" class="text-sm text-[#666] hover:text-green-400 transition-colors">@nachopalmeri</a>
+<a href="https://github.com/nachopalmeri" target="_blank" class="text-sm text-[#666] hover:text-green-400 transition-colors">@nachopalmeri</a>
 </div>
 <div class="contributions-grid" id="contributions-grid">
 <!-- Se llena con JavaScript -->
 </div>
-<p class="text-xs text-[#555] mt-4 text-center">Actividad GitHub • Últimos 90 días • <a href="https://github.com/nachopalmeri" target="_blank" rel="noopener noreferrer" class="text-green-400 hover:underline">Ver perfil</a></p>
+<p class="text-xs text-[#555] mt-4 text-center">Actividad GitHub • Últimos 90 días • <a href="https://github.com/nachopalmeri" target="_blank" class="text-green-400 hover:underline">Ver perfil</a></p>
 </div>
 </div>
 
@@ -1646,7 +1646,7 @@ Programación y análisis de datos, con enfoque en el sector Fintech y Criptoact
 </div>
 <h3 class="text-base font-bold text-white mb-1">DESCARGAR CV</h3>
 <p class="text-[10px] text-text-secondary mb-3">Versión completa en PDF.</p>
-<a class="inline-block px-3 py-1.5 bg-white text-black text-[10px] font-bold uppercase tracking-widest rounded hover:bg-gray-200 transition-colors" href="https://drive.google.com/file/d/174_MYjUcNGc3mgJE2vabqmo9W799_cKC/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
+<a class="inline-block px-3 py-1.5 bg-white text-black text-[10px] font-bold uppercase tracking-widest rounded hover:bg-gray-200 transition-colors" href="https://drive.google.com/file/d/174_MYjUcNGc3mgJE2vabqmo9W799_cKC/view?usp=drive_link" target="_blank">
                             OBTENER PDF
                         </a>
 </div>
@@ -2125,7 +2125,7 @@ this.reset();
         </p>
         
         <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8 animate-slide-up delay-2">
-            <a href="https://wa.me/541155090832?text=Hola%20Ignacio,%20vi%20tu%20portfolio%20y%20me%20interesa%20contactarte" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-500 text-white font-medium rounded-xl transition-all duration-300 hover:scale-105 shadow-lg shadow-green-500/20">
+            <a href="https://wa.me/541155090832?text=Hola%20Ignacio,%20vi%20tu%20portfolio%20y%20me%20interesa%20contactarte" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-500 text-white font-medium rounded-xl transition-all duration-300 hover:scale-105 shadow-lg shadow-green-500/20">
                 <i class="fab fa-whatsapp text-xl"></i>
                 <span>WhatsApp</span>
             </a>
@@ -2133,14 +2133,14 @@ this.reset();
                 <span>Email</span>
                 <span class="material-symbols-outlined rotate-icon transition-transform group-hover:-translate-x-1">send</span>
             </a>
-            <a href="https://drive.google.com/file/d/174_MYjUcNGc3mgJE2vabqmo9W799_cKC/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="cta-button-secondary group">
+            <a href="https://drive.google.com/file/d/174_MYjUcNGc3mgJE2vabqmo9W799_cKC/view?usp=drive_link" target="_blank" class="cta-button-secondary group">
                 <span>CV</span>
                 <i class="fas fa-download transition-transform group-hover:translate-y-1"></i>
             </a>
         </div>
         
         <!-- Formulario de contacto estilo terminal -->
-        <div id="contacto" class="max-w-lg mx-auto animate-slide-up delay-3">
+        <div class="max-w-lg mx-auto animate-slide-up delay-3">
             <div class="bg-[#0d0d0d] rounded-xl border border-[#1a1a1a] overflow-hidden">
                 <div class="flex items-center gap-2 px-4 py-3 bg-[#111] border-b border-[#1a1a1a]">
                     <span class="terminal-dot red"></span>
